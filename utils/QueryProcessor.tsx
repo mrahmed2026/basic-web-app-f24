@@ -63,5 +63,31 @@ if (query.toLowerCase().includes("which of the following numbers is both a squar
       return result.join(', ');
   }
 }
+
+
+if (query.toLowerCase().includes("which of the following numbers are primes")) {
+  const regex = /which of the following numbers are primes: ([\d,\s]+)\?/i;
+  const match = query.match(regex);
+  if (match) {
+      const numbers = match[1].split(',').map(num => parseInt(num.trim(), 10));
+      const isPrime = (num: number) => {
+          if (num <= 1) return false;
+          for (let i = 2; i <= Math.sqrt(num); i++) {
+              if (num % i === 0) return false;
+          }
+          return true;
+      };
+      const result = numbers.filter(isPrime);
+      return result.join(', ');
+  }
+}
+
+
+
+
+
+
+
+
   return "";
 }

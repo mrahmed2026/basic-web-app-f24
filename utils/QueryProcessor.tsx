@@ -27,6 +27,15 @@ export default function QueryProcessor(query: string): string {
       const result = num1 + num2;
       return result.toString();
     }
+
+    const regexMultiply = /what is (\d+) multiplied by (\d+)\?/i;
+    const matchMultiply = query.match(regexMultiply);
+    if (matchMultiply) {
+        const num1 = parseInt(matchMultiply[1], 10);
+        const num2 = parseInt(matchMultiply[2], 10);
+        const result = num1 * num2;
+        return result.toString();
+    }
   }
 
 

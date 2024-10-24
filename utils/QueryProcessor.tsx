@@ -18,6 +18,15 @@ export default function QueryProcessor(query: string): string {
   }
 
 
-
+  if (query.toLowerCase().includes("what is")) {
+    const regex = /what is (\d+) plus (\d+)\?/i;
+    const match = query.match(regex);
+    if (match) {
+      const num1 = parseInt(match[1], 10);
+      const num2 = parseInt(match[2], 10);
+      const result = num1 + num2;
+      return result.toString();
+    }
+  }
   return "";
 }

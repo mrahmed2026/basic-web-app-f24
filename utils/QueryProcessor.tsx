@@ -46,6 +46,17 @@ export default function QueryProcessor(query: string): string {
         return result.toString();
     }
 
+    const regexPower = /what is (\d+) to the power of (\d+)\?/i;
+    const matchPower = query.match(regexPower);
+    if (matchPower) {
+        const num1 = parseInt(matchPower[1], 10);
+        const num2 = parseInt(matchPower[2], 10);
+        const result = Math.pow(num1, num2);
+        return result.toString();
+    }
+
+
+
 
 
   }

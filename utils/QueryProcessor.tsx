@@ -28,5 +28,18 @@ export default function QueryProcessor(query: string): string {
       return result.toString();
     }
   }
+
+
+  if (query.toLowerCase().includes("which of the following numbers is the largest")) {
+    const regex = /which of the following numbers is the largest: ([\d,\s]+)\?/i;
+    const match = query.match(regex);
+    if (match) {
+        const numbers = match[1].split(',').map(num => parseInt(num.trim(), 10));
+        const largest = Math.max(...numbers);
+        return largest.toString();
+    }
+}
+
+
   return "";
 }

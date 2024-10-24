@@ -40,6 +40,19 @@ export default function QueryProcessor(query: string): string {
     }
 }
 
-
+if (query.toLowerCase().includes("which of the following numbers is both a square and a cube")) {
+  const regex = /which of the following numbers is both a square and a cube: ([\d,\s]+)\?/i;
+  const match = query.match(regex);
+  if (match) {
+      const numbers = match[1].split(',').map(num => parseInt(num.trim(), 10));
+      const isSquareAndCube = (num: number) => {
+          const sqrt = Math.sqrt(num);
+          const cbrt = Math.cbrt(num);
+          return Number.isInteger(sqrt) && Number.isInteger(cbrt);
+      };
+      const result = numbers.filter(isSquareAndCube);
+      return result.join(', ');
+  }
+}
   return "";
 }

@@ -36,6 +36,18 @@ export default function QueryProcessor(query: string): string {
         const result = num1 * num2;
         return result.toString();
     }
+
+    const regexMinus = /what is (\d+) minus (\d+)\?/i;
+    const matchMinus = query.match(regexMinus);
+    if (matchMinus) {
+        const num1 = parseInt(matchMinus[1], 10);
+        const num2 = parseInt(matchMinus[2], 10);
+        const result = num1 - num2;
+        return result.toString();
+    }
+
+
+
   }
 
 

@@ -19,13 +19,12 @@ export default function QueryProcessor(query: string): string {
 
 
   if (query.toLowerCase().includes("what is")) {
-    const regex = /what is (\d+) plus (\d+)\?/i;
-    const match = query.match(regex);
-    if (match) {
-      const num1 = parseInt(match[1], 10);
-      const num2 = parseInt(match[2], 10);
-      const result = num1 + num2;
-      return result.toString();
+    const regexPlus = /what is (\d+(?: plus \d+)+)\?/i;
+    const matchPlus = query.match(regexPlus);
+    if (matchPlus) {
+        const numbers = matchPlus[1].split(' plus ').map(num => parseInt(num, 10));
+        const result = numbers.reduce((acc, curr) => acc + curr, 0);
+        return result.toString();
     }
 
     const regexMultiply = /what is (\d+) multiplied by (\d+)\?/i;

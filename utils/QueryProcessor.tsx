@@ -54,6 +54,15 @@ export default function QueryProcessor(query: string): string {
         return result.toString();
     }
 
+    const regexComplex = /what is (\d+) multiplied by (\d+) plus (\d+)\?/i;
+    const matchComplex = query.match(regexComplex);
+    if (matchComplex) {
+        const num1 = parseInt(matchComplex[1], 10);
+        const num2 = parseInt(matchComplex[2], 10);
+        const num3 = parseInt(matchComplex[3], 10);
+        const result = (num1 * num2) + num3;
+        return result.toString();
+    }
 
 
 

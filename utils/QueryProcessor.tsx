@@ -51,7 +51,8 @@ export default function QueryProcessor(query: string): string {
         const num1 = parseInt(matchPower[1], 10);
         const num2 = parseInt(matchPower[2], 10);
         const result = Math.pow(num1, num2);
-        return result.toString();
+        const roundedResult = Math.ceil(result);
+        return roundedResult.toString();
     }
 
     const regexComplex = /what is (\d+) multiplied by (\d+) plus (\d+)\?/i;
